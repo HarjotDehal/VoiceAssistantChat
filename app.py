@@ -49,7 +49,7 @@ def handle_query(query):
             open_index = words.index("open")
             if open_index < len(words) - 1:
                 url = "https://www." + words[open_index + 1] + ".com"
-                webbrowser.open(url, new=2)
+                webbrowser.open(url, new=1)
                 return f"Opening {url}..."
             else:
                 return "Please provide a URL to open after the 'open' keyword."
