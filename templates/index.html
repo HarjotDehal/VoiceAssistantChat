@@ -8,8 +8,9 @@
 <body>
     <h1 style="text-align: center;">Voice Assistant</h1>
 
-    <h3 style="text-align: center;"> Built in Commands are "hello", "goodbye", and "open" followed by any website name will open a website</h3>
+    <h3 style="text-align: center;"> Built in Commands are any spoken messages which include "hello", "goodbye", "weather","joke","quote" and "open" followed by any website name will open a website</h3>
     <h4 style="text-align: center;">Any other input will be given to ChatGPT</h4>
+    <h5 style="text-align: center;"> If the Speaker doesn't automatically start speaking the replies to your inputs, hit f12 twice and it will work</h5>
 
     <div class="container">
         <div class="voice-assistant">
@@ -54,12 +55,18 @@
                     contentType: "application/json",
                     data: JSON.stringify({query: result}),
                     success: function(response) {
-                       
+                        if (response.startsWith("Opening")) {
+                    // If response is related to opening a URL, open it in a new tab
+                    window.open(response.substring(8), "_blank");
+                } else if (response.startsWith("http")) {
+                    // If response is a URL, open it in a new tab
+                    window.open(response, "_blank");
+                } else {
                             
                             
                             $(".response").text(response);
                             speak(response);
-                        
+                }
                     }
                 });
             }

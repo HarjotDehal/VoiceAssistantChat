@@ -7,17 +7,12 @@ import os
 from dotenv import find_dotenv, load_dotenv
 app = Flask(__name__)
 
-# OPENAI_API_ENDPOINT = "https://api.openai.com/v1/engines/davinci/completions"
-# OPENAI_API_KEY = "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"
 
-# API_KEY = open("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","r").read()
-
-# API_KEY = "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"
-# API_KEY =''
 
 dotenv_path= find_dotenv()
 
 load_dotenv(dotenv_path)
+
 
 API_KEY = os.getenv("API_KEY")
 
@@ -42,19 +37,31 @@ def handle_query(query):
 
     if "hello" in words:
         return "Hello! How can I assist you?"
-    elif "goodbye" in words:
+    elif "goodbye" in words: 
         return "Goodbye!"
     elif "open" in words:
         try:
             open_index = words.index("open")
             if open_index < len(words) - 1:
                 url = "https://www." + words[open_index + 1] + ".com"
-                webbrowser.open(url, new=1)
-                return f"Opening {url}..."
+                # webbrowser.open(url)
+                return f"Opening {url}"
             else:
                 return "Please provide a URL to open after the 'open' keyword."
         except ValueError:
             return "I found 'open' in the query, but no URL was provided."
+                
+    elif "weather" in words:
+        # Add weather-related functionality here
+        return "The weather today is sunny."
+    elif "quote" in words:
+        # Add quote-related functionality here
+        return "Here's an inspiring quote: 'Believe you can and you're halfway there.' - Theodore Roosevelt"
+    elif "joke" in words:
+        # Add joke-related functionality here
+        return "Why don't scientists trust atoms? Because they make up everything!"
+    
+
     else:
         answer = ask_question(query)
         return answer
