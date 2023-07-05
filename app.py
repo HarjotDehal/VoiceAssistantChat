@@ -4,6 +4,7 @@ import webbrowser
 import openai
 import os
 import datetime
+import pytz
 
 from dotenv import find_dotenv, load_dotenv
 app = Flask(__name__)
@@ -39,7 +40,7 @@ def handle_query(query):
     if "hello" in words or "hi" in words:
         return "Hello! How can I assist you?"
     elif "goodbye" in words: 
-        return "Goodbye!"
+        return "Goodbye, Have a Great Day!"
     elif "open" in words:
         try:
             open_index = words.index("open")
@@ -56,8 +57,9 @@ def handle_query(query):
         # Add weather-related functionality here
         return "The weather today is sunny."
     elif "time" in words:
-        current_time = datetime.datetime.now().strftime("%I:%M:%S %p")
-        return f"The current time is {current_time}."
+        eastern_timezone = pytz.timezone("US/Eastern")
+        current_time = datetime.datetime.now(eastern_timezone).strftime("%I:%M:%S %p")
+        return f"The current time in Eastern Standard Time is {current_time}."
     elif "quote" in words:
         # Add quote-related functionality here
         return "Here's an inspiring quote: 'Believe you can and you're halfway there.' - Theodore Roosevelt"
