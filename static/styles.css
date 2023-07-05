@@ -1,0 +1,93 @@
+/* Style for the Voice Assistant interface */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(164, 179, 170);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+
+}
+
+.voice-assistant {
+    text-align: center;
+}
+
+.voice-assistant h1 {
+    color: #333;
+}
+
+.response {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+    font-size: 18px;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: 800px;
+
+    min-height: 50px;
+    /* min-height: 400px; */
+}
+
+
+.user-box, .chat-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+    word-wrap: break-word;
+}
+
+
+.assistant-gif {
+    margin-top: 20px;
+    width: 800px;
+    /* height: auto; */
+    height: 600px;
+    margin-left: 20px;
+}
+
+/* Style for the speech input and response */
+
+.speech-input {
+    display: none;
+}
+
+.speech-response {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-top: 10px;
+}
+#user-input {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#assistant-response {
+    background-color: #e5e5e5;
+    padding: 10px;
+}
+/* Style for the "Opening" message */
+
+.opening-message {
+    font-style: italic;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* Style for the "ChatGPT Response" message */
+
+.chatgpt-response {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}

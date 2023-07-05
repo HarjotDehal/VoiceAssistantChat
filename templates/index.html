@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Assistant</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center;">Voice Assistant</h1>
+
+    <h3 style="text-align: center;"> Built in Commands are "hello", "goodbye", and "open" followed by any website name will open a website</h3>
+    <h4 style="text-align: center;">Any other input will be given to ChatGPT</h4>
+
+    <div class="container">
+        <div class="voice-assistant">
+            <div class="response">
+
+<!-- 
+<p class="response1">                Your Command shall appear here
+</p>
+<p class="response2">                Your Reply shall appear here
+</p> -->
+
+
+            </div>
+        </div>
+        <img src="{{ url_for('static', filename='assistant.gif') }}" alt="Assistant" class="assistant-gif">
+    </div>
+
+<!-- 
+    <button id="speak-button">Speak</button> Add the "Speak" button -->
+
+    <script>
+        
+        $(document).ready(function() {
+            function startListening() {
+                var recognition = new webkitSpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = false;
+
+                recognition.onresult = function(event) {
+                    var result = event.results[event.results.length - 1][0].transcript;
+                    handleResult(result);
+                };
+
+
+                recognition.start();
+            }
+
+            function handleResult(result) {
+                $.ajax({
+                    url: "/process",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({query: result}),
+                    success: function(response) {
+                        if (response.startsWith("Opening")) {
+                            window.open(response, "_blank");
+                        } else {
+                            
+                            
+                            $(".response").text(response);
+                            speak(response);
+                        }
+                    }
+                });
+            }
+
+            // $("#speak-button").on("click", function() {
+            //     var responseText = $("#response").text();
+            //     speak(responseText);
+            // });
+
+            function speak(text) {
+                var synthesis = window.speechSynthesis;
+                var utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.9;
+                utterance.pitch = 1;
+                synthesis.speak(utterance);
+                console.log('hiii');
+            }
+
+            startListening();
+        });
+    </script>
+</body>
+</html>
