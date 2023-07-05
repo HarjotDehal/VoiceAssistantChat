@@ -23,6 +23,24 @@ body {
     color: #333;
 }
 
+
+@keyframes pulse-animation {
+    0% {
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+ .pingg{
+    animation: pulse-animation 2s infinite;
+    text-align: center;
+    text-decoration: underline;
+}
 .response {
     background-color: #fff;
     padding: 20px;

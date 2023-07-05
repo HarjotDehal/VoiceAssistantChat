@@ -4,18 +4,36 @@
     <title>Voice Assistant</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+    @keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+h5 {
+    animation: pulse-animation 1s infinite alternate;
+}
+    </style>
+
+
 </head>
 <body>
     <h1 style="text-align: center;">Voice Assistant</h1>
 
-    <h3 style="text-align: center;"> Built in Commands are any spoken messages which include "hello", "goodbye","time", "weather","joke","quote" and "open" followed by any website name will open a website</h3>
-    <h4 style="text-align: center;">Any other input will be given to ChatGPT</h4>
-    <h5 style="text-align: center;"> If the Speaker doesn't automatically start speaking the replies to your inputs, hit the F12 key twice and it will work</h5>
+    <h3 style="text-align: center;"> Built in Commands are any spoken messages which include "hello", "goodbye", "time", "weather", "joke", "quote" and "open" followed by any website name will open a website</h3>
+    <h3 style="text-align: center;">Any other input will be given to ChatGPT!!!</h3>
+    <h4   style="text-align: center; text-decoration: underline;animation: pulse-animation 1s infinite;"> If the Speaker doesn't automatically start speaking the replies to your inputs, hit the F12 key twice and it will work</h4>
 
     <div class="container">
         <div class="voice-assistant">
-            <div class="response">
-
+            <div class="response" style="margin-top: 85px;">
 <!-- 
 <p class="response1">                Your Command shall appear here
 </p>
