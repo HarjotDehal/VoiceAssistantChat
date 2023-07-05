@@ -3,6 +3,7 @@ import requests
 import webbrowser
 import openai
 import os
+import datetime
 
 from dotenv import find_dotenv, load_dotenv
 app = Flask(__name__)
@@ -35,7 +36,7 @@ def process():
 def handle_query(query):
     words = query.lower().split()
 
-    if "hello" in words:
+    if "hello" in words or "hi" in words:
         return "Hello! How can I assist you?"
     elif "goodbye" in words: 
         return "Goodbye!"
@@ -54,6 +55,9 @@ def handle_query(query):
     elif "weather" in words:
         # Add weather-related functionality here
         return "The weather today is sunny."
+    elif "time" in words:
+        current_time = datetime.datetime.now().strftime("%I:%M:%S %p")
+        return f"The current time is {current_time}."
     elif "quote" in words:
         # Add quote-related functionality here
         return "Here's an inspiring quote: 'Believe you can and you're halfway there.' - Theodore Roosevelt"
